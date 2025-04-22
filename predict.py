@@ -19,6 +19,14 @@ def predict_batch(image_tensors: List[torch.Tensor]) -> List[str]:
     return [inv_label_map[p] for p in preds]
 
 
+def predict_image(image_path: str) -> str:
+    return predict_batch([image_to_tensor(image_path)])[0]
+
+
+def predict_images(image_paths: List[str]) -> List[str]:
+    return predict_batch([image_to_tensor(p) for p in image_paths])
+
+
 def path_to_image(img_path: Union[str, io.BytesIO]) -> Image.Image:
     return Image.open(img_path).convert("RGB")
 
@@ -35,14 +43,6 @@ def image_to_base64(image: Image.Image) -> str:
     buf = io.BytesIO()
     image.save(buf, format="JPEG")
     return base64.b64encode(buf.getvalue()).decode("utf-8")
-
-
-def predict_image(image_path: str) -> str:
-    return predict_batch([image_to_tensor(image_path)])[0]
-
-
-def predict_images(image_paths: List[str]) -> List[str]:
-    return predict_batch([image_to_tensor(p) for p in image_paths])
 
 
 def test(csv_path: str, image_dir: str):
