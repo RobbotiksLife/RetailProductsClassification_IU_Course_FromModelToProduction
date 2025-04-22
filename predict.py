@@ -81,6 +81,13 @@ if __name__ == "__main__":
         image_dir="retail-products-classification/train"
     )
 
-    # path = "retail-products-classification/test"
-    # print("Single prediction:", predict_image(f"{path}/097585562X.jpg"))
-    # print("Batch prediction:", predict_images([f"{path}/097585562X.jpg", f"{path}/097924837X.jpg"]))
+    path = "retail-products-classification/test"
+    print("Single prediction:", predict_image(
+        f"{path}/097585562X.jpg"
+    ))
+    print("Batch prediction:", predict_images(
+        [
+            f"{path}/097585562X.jpg",
+            f"{path}/097924837X.jpg"
+        ]
+    ))
